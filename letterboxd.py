@@ -4,24 +4,19 @@ filmes = []
 nota_permitidas = [1, 2, 3, 4, 5]
 
 def limpar():
-
     command = 'cls' if os.name == 'nt' else 'clear'
     os.system(command)
 
 def voltar():
-
     print("----------------")
     print("Digite uma opção válida")
     input("Digite qualquer tecla para voltar: ")
     limpar()
-    main()
 
 def voltar_correto():
-
     print("----------------")
     input("Digite qualquer tecla para voltar: ")
     limpar()
-    main()
 
 def adicionar_filme():
 
@@ -61,14 +56,17 @@ def lista_filme():
 
 
 def main():
-    resposta = ""
+    resposta = 0
     
-    try: 
-        while resposta != 3:
+    while resposta != 3:
+            
+        try:
             resposta = int(input("Selecione uma das opções abaixo:\n 1 - Adicionar filmes a sua conta\n 2 - Acessar sua lista de filmes\n 3 - Sair\n-> "))
 
+    
             if resposta == 1:
                 adicionar_filme()
+
 
             elif resposta == 2:
                 lista_filme()
@@ -81,8 +79,8 @@ def main():
             else:
                 voltar()
 
-    except:
-        voltar()
+        except:
+            voltar()
 
 
 if __name__ == "__main__":
