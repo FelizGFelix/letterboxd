@@ -1,180 +1,90 @@
 import os
 
-nota0 = []
-nota05 = []
-nota1 = []
-nota15 = []
-nota2 = []
-nota25 = []
-nota3 = []
-nota35 = []
-nota4 = []
-nota45 = []
-nota5 = []
+filmes = []
+nota_permitidas = [1, 2, 3, 4, 5]
 
-def clear_screen():
+def limpar():
+
     command = 'cls' if os.name == 'nt' else 'clear'
     os.system(command)
 
+def voltar():
+
+    print("----------------")
+    print("Digite uma opção válida")
+    input("Digite qualquer tecla para voltar: ")
+    limpar()
+    main()
+
+def voltar_correto():
+
+    print("----------------")
+    input("Digite qualquer tecla para voltar: ")
+    limpar()
+    main()
+
+def adicionar_filme():
+
+    limpar()
+    nome_filme = input("Digite o nome do filme: ")
+    nota_filme = int(input("Digite a nota do filme: "))
+    if nota_filme not in nota_permitidas:
+        print("Só são permitidas notas de 1, 2, 3, 4 ou 5")
+        input("Digite qualquer tecla para voltar: ")
+        limpar()
+        adicionar_filme()
+
+    review_filme = input("Digite a review do filme: ")
+
+
+    filme = {
+        "nome" : nome_filme,
+        "nota" : nota_filme,
+        "review" : review_filme
+    }
+
+    filmes.append(filme)
+
+    voltar_correto()
+    return filme
+
+def lista_filme():
+
+    limpar()
+    for i in filmes:
+        print("----------------")
+        print("Nome do filme: ", i["nome"])
+        print("Nota do filme: ", i["nota"])
+        print("Review do filme: ", i["review"])
+
+    voltar_correto()
+
+
 def main():
-    print("Bem-vindo ao Letterboxd!")
-    opcao = ""
-    while opcao != 3:
-        opcao = int(input("Qual opção deseja acessar?\n 1 - adicionar filmes a sua conta\n 2 - acessar notas da sua conta\n 3 - sair-> "))
-        if opcao == 1:
-            cadastrar_filme()
-        
-        elif opcao == 2:
-            imprime_filmes()
-
-        elif opcao == 3:
-            clear_screen()
-            print("Saindo do programa")
-            break
-
-        else:
-            print("Valor inválido")
-            input("Escreva qualquer valor para voltar: ")
-            clear_screen()
-
-def cadastrar_filme():
-    filmenovo = input("Escreva o nome do filme: ")
-    notafilmenovo = float(input("Escreva a nota desse filme: "))
-
-    if notafilmenovo == 0:
-        nota0.append(filmenovo)
-        print(f"A nota do {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif notafilmenovo == 0.5:
-        nota05.append(filmenovo)
-        print(f"A nota de {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif notafilmenovo == 1:
-        nota1.append(filmenovo)
-        print(f"A nota de {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif notafilmenovo == 1.5:
-        nota15.append(filmenovo)
-        print(f"A nota de {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif notafilmenovo == 2:
-        nota2.append(filmenovo)
-        print(f"A nota de {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif notafilmenovo == 2.5:
-        nota25.append(filmenovo)
-        print(f"A nota de {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif notafilmenovo == 3:
-        nota3.append(filmenovo)
-        print(f"A nota de {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif notafilmenovo == 3.5:
-        nota35.append(filmenovo)
-        print(f"A nota de {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif notafilmenovo == 4:
-        nota4.append(filmenovo)
-        print(f"A nota de {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif notafilmenovo == 4.5:
-        nota45.append(filmenovo)
-        print(f"A nota de {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif notafilmenovo == 5:
-        nota5.append(filmenovo)
-        print(f"A nota de {filmenovo} é {notafilmenovo}")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    else:
-        print("Só são aceitas notas de:\n0\n0.5\n1\n1.5\n2\n2.5\n3\n3.5\n4\n4.5\n5")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-def imprime_filmes():
+    resposta = ""
     
-    resposta = float(input("Qual lista de filme deseja acessar?: "))
+    try: 
+        while resposta != 3:
+            resposta = int(input("Selecione uma das opções abaixo:\n 1 - Adicionar filmes a sua conta\n 2 - Acessar sua lista de filmes\n 3 - Sair\n-> "))
 
-    if resposta == 0:
-        print(nota0)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
+            if resposta == 1:
+                adicionar_filme()
 
-    elif resposta == 0.5:
-        print(nota05)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
+            elif resposta == 2:
+                lista_filme()
 
-    elif resposta == 1:
-        print(nota1)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-            
-    elif resposta == 1.5:
-        print(nota15)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
+            elif resposta == 3:
+                limpar()
+                print("Saindo do programa...")
+                break
 
-    elif resposta == 2:
-        print(nota2)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
+            else:
+                voltar()
 
-    elif resposta == 2.5:
-        print(nota25)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
+    except:
+        voltar()
 
-    elif resposta == 3:
-        print(nota3)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
 
-    elif resposta == 3.5:
-        print(nota35)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif resposta == 4:
-        print(nota4)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif resposta == 4.5:
-        print(nota45)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    elif resposta == 5:
-        print(nota5)
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-
-    else:
-        print("Só existem listas de de:\n0\n0.5\n1\n1.5\n2\n2.5\n3\n3.5\n4\n4.5\n5")
-        input("Escreva qualquer valor para voltar: ")
-        clear_screen()
-       
 if __name__ == "__main__":
     main()
+
