@@ -19,29 +19,39 @@ def voltar_correto():
     limpar()
 
 def adicionar_filme():
-
     limpar()
-    nome_filme = input("Digite o nome do filme: ")
-    nota_filme = int(input("Digite a nota do filme: "))
-    if nota_filme not in nota_permitidas:
-        print("Só são permitidas notas de 1, 2, 3, 4 ou 5")
-        input("Digite qualquer tecla para voltar: ")
-        limpar()
-        adicionar_filme()
+    class Filme():
+        def __init__(self):
+            self.filme = ""
+            self.nota = 0
+            self.review = ""
 
-    review_filme = input("Digite a review do filme: ")
+        def preencher(self):
+            self.filme = input("Digite o nome do filme: ")
+            self.nota = int(input("Digite a nota do filme: "))
+            self.review = input("Digite a review do filme: ")
 
 
-    filme = {
-        "nome" : nome_filme,
-        "nota" : nota_filme,
-        "review" : review_filme
-    }
+            if self.nota not in nota_permitidas:
+                print("Nota inválida, só são permitidas notas de 1 a 5: ")
+                self.nota = int(input("Insira a nota novamente: "))
 
-    filmes.append(filme)
+
+            filme = {
+                "nome" : self.filme,
+                "nota" : self.nota,
+                "review" : self.review
+                }
+
+            filmes.append(filme)
+
+
+    adicionar = Filme()
+    adicionar.preencher()
 
     voltar_correto()
-    return filme
+    return filmes
+        
 
 def lista_filme():
 
@@ -85,4 +95,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
